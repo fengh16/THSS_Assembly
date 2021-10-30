@@ -6,18 +6,18 @@ includelib      msvcrt.lib
 include         msvcrt.inc
 
 .data
-szMsg			byte    "è¯·è¾“å…¥ä¸¤ä¸ªæ•°å­—ï¼Œç”¨ç©ºæ ¼éš”å¼€:", 0ah, 0dh, 0
+szMsg			byte    "ÇëÊäÈëÁ½¸öÊı×Ö£¬ÓÃ¿Õ¸ñ¸ô¿ª:", 0ah, 0dh, 0
 scanMsg			byte    "%d %d", 0
-ansMsg			byte    "ç»“æœæ˜¯%d", 0ah, 0dh, 0  ; 0ah 0dhæ˜¯å›è½¦æ¢è¡Œ
+ansMsg			byte    "½á¹ûÊÇ%d", 0ah, 0dh, 0  ; 0ah 0dhÊÇ»Ø³µ»»ĞĞ
 varA			sdword  0
 varB			sdword  0
 
 .code
 start:
-                invoke  crt_printf, offset szMsg  ; è°ƒç”¨printf
-                invoke  crt_scanf, offset scanMsg, offset varA, offset varB ; è°ƒç”¨scanf
+                invoke  crt_printf, offset szMsg  ; µ÷ÓÃprintf
+                invoke  crt_scanf, offset scanMsg, offset varA, offset varB ; µ÷ÓÃscanf
                 mov     eax, varA
-                add     eax, varB    ; ç°åœ¨eaxæ˜¯varA+varB
+                add     eax, varB    ; ÏÖÔÚeaxÊÇvarA+varB
                 invoke  crt_printf, offset ansMsg, eax
                 ret
 end				start

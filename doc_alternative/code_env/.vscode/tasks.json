@@ -25,6 +25,9 @@
                 "/coff",
                 "/Cp",
                 "${file}",
+                "/Zd",
+                "/Zi",
+                "/Zf"
             ],
             "options": {
                 "cwd": "${fileDirname}"
