@@ -1,0 +1,62 @@
+{
+    // Author: Henry Fox
+    // 2021.10.30
+    // https://github.com/fengh16/THSS_Assembly
+    "tasks": [
+        {
+            "label": "create build directory",
+            "type": "shell",
+            "linux": {
+                "command": "mkdir -p ${fileDirname}/build"
+            },
+            "windows": {
+                "command": "cmd",
+                "args": ["/C", "if not exist ${fileDirname}\\build mkdir ${fileDirname}\\build"]
+            }
+        },
+        {
+            "type": "shell",
+            "label": "masm32 ml active file",  // 编译任务的名称，跟上面preLaunchTask的值对应
+            "command": "C:\\masm32\\bin\\ml.exe",  // 编译器的路径，须跟你自己的电脑相符
+            "args": [  // 编译器执行时的参数，跟手动编译时输入的内容基本一致，主要是多了-g参数，以加入调试信息
+                "/Fo",
+                "${fileDirname}\\build\\${fileBasenameNoExtension}.obj",
+                "/c",
+                "/coff",
+                "/Cp",
+                "${file}",
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "dependsOn": [
+                "create build directory"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "masm32 link active file",  // 编译任务的名称，跟上面preLaunchTask的值对应
+            "command": "C:\\masm32\\bin\\link.exe",  // 编译器的路径，须跟你自己的电脑相符
+            "args": [  // 编译器执行时的参数，跟手动编译时输入的内容基本一致，主要是多了-g参数，以加入调试信息
+                "/SUBSYSTEM:CONSOLE",
+                "/DEBUG",
+                "${fileDirname}\\build\\${fileBasenameNoExtension}.obj",
+                "C:\\masm32\\lib\\kernel32.lib",
+                "C:\\masm32\\lib\\user32.lib",
+                "C:\\Irvine\\Irvine32.lib",
+                "/OUT:${fileDirname}\\build\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "masm32 ml active file"
+            ]
+        }
+    ],
+    "version": "2.0.0"
+}
