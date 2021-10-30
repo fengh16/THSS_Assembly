@@ -9,3 +9,4 @@
 1. 请注意文件编码为GB 2312（可以参考文件InputOutput.asm），若使用utf-8编码可能在VS中会出错。
 2. scanf和printf在通过INVOKE调用时，参数和C语言中调用的参数相同。
 3. VS中请选择子系统为控制台。
+4. .inc文件类似于C语言的.h文件，如果需要某个函数的声明，可以include这些.inc文件，也可以直接将函数的声明复制过来（可以参考文件InputOutput.asm）。
