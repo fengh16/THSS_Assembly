@@ -13,11 +13,12 @@ varA			sdword  0
 varB			sdword  0
 
 .code
-start:
+start PROC
                 invoke  crt_printf, offset szMsg  ; 调用printf
                 invoke  crt_scanf, offset scanMsg, offset varA, offset varB ; 调用scanf
                 mov     eax, varA
                 add     eax, varB    ; 现在eax是varA+varB
                 invoke  crt_printf, offset ansMsg, eax
                 ret
+start ENDP
 end				start

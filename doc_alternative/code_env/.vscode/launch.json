@@ -1,0 +1,35 @@
+{
+    // Author: Henry Fox
+    // 2021.10.30
+    // https://github.com/fengh16/THSS_Assembly
+    "version": "2.0.0",
+    "configurations": [
+        // {
+        //     "name": "masm32调试",
+        //     "type": "cppdbg",
+        //     "request": "launch",
+        //     "program": "${fileDirname}\\build\\${fileBasenameNoExtension}.exe",
+        //     "args": [],
+        //     "stopAtEntry": false,  // 入口处暂停
+        //     "cwd": "${workspaceFolder}",
+        //     "environment": [],
+        //     "externalConsole": false,  // 单独打开一个控制台窗口
+        //     "MIMode": "gdb",
+        //     "miDebuggerPath": "C:\\cygwin64\\bin\\gdb.exe",
+        //     "preLaunchTask": "masm32 link active file"
+        // },
+        {
+            "name": "masm32启动",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\build\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "miDebuggerPath": "cmd",
+            "preLaunchTask": "masm32 link active file"
+        }
+    ]
+}
