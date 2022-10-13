@@ -12,7 +12,13 @@
 
 ### 执行代码
 
-用VS Code打开CODE_ENV文件夹，打开asm文件，选择 终端——运行生成任务 ，即可在build文件夹下找到对应exe文件。
+用VS Code打开CODE_ENV文件夹，打开asm文件（编码为GB2312），选择 终端——运行生成任务（Terminal - Run Build Task） ，即可在build文件夹下找到对应exe文件。
+
+目前试着写了`.vscode/launch.json`，但是并不work。如果有人能把它弄得能用，可以提个PR。
+
+### 需要使用其他lib文件
+
+请修改`.vscode/tasks.json`内`link`时的参数。
 
 ### 注意
 

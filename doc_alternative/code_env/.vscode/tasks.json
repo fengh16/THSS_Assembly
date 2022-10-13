@@ -18,7 +18,7 @@
             "type": "shell",
             "label": "masm32 ml active file",  // 编译任务的名称，跟上面preLaunchTask的值对应
             "command": "C:\\masm32\\bin\\ml.exe",  // 编译器的路径，须跟你自己的电脑相符
-            "args": [  // 编译器执行时的参数，跟手动编译时输入的内容基本一致，主要是多了-g参数，以加入调试信息
+            "args": [  // 编译器执行时的参数，跟手动编译时输入的内容基本一致
                 "/Fo",
                 "${fileDirname}\\build\\${fileBasenameNoExtension}.obj",
                 "/c",
@@ -40,7 +40,7 @@
             "type": "shell",
             "label": "masm32 link active file",  // 编译任务的名称，跟上面preLaunchTask的值对应
             "command": "C:\\masm32\\bin\\link.exe",  // 编译器的路径，须跟你自己的电脑相符
-            "args": [  // 编译器执行时的参数，跟手动编译时输入的内容基本一致，主要是多了-g参数，以加入调试信息
+            "args": [  // 编译器执行时的参数，跟手动编译时输入的内容基本一致
                 "/SUBSYSTEM:CONSOLE",
                 "/DEBUG",
                 "${fileDirname}\\build\\${fileBasenameNoExtension}.obj",

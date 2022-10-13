@@ -2,8 +2,8 @@
 .model flat, stdcall
 option casemap:none
 
-includelib      msvcrt.lib
-include         msvcrt.inc
+include         C:\masm32\include\msvcrt.inc
+includelib      C:\masm32\lib\msvcrt.lib
 
 .data
 szMsg			byte    "请输入两个数字，用空格隔开:", 0ah, 0dh, 0

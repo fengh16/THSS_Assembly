@@ -4,4 +4,4 @@
 
 - code文件夹：汇编示例代码
 - doc文件夹：汇编说明文档（使用VS进行配置）的源文件（markdown格式）
-- doc_alternative文件夹：同学提供的其他汇编相关内容
+- doc_alternative文件夹：同学提供的其他汇编相关内容，包括用VS Code配置汇编运行环境的配置（但这样做无法设断点debug，不推荐）

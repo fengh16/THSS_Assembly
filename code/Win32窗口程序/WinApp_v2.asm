@@ -25,7 +25,6 @@ include         masm32.inc
 includelib      masm32.lib
 include         msvcrt.inc
 includelib      msvcrt.lib
-include         action.inc
 include         shell32.inc
 includelib      shell32.lib
 
