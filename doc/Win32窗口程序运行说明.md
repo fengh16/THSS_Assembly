@@ -2,6 +2,8 @@
 
 [TOC]
 
+该文档源文件在[GitHub](https://github.com/fengh16/THSS_Assembly/tree/master/doc)，大家可以直接在GitHub上提PR来改进该文档。
+
 ## 环境配置
 
 首先需要配置好命令行版本VS+汇编环境，还需要做以下修改：
@@ -298,3 +300,43 @@ rc文件上右键——添加资源，选择对应的类型，选择导入（这
 使用时可以在`asm`文件中添加`IDI_ICON1 = 101`一行，并且在合适位置调用（如加载icon，作为程序的图标）：
 
 ![image-20201013223857609](Win32窗口程序运行说明.assets/image-20201013223857609.png)
+
+
+
+## 相关功能查找示例
+
+建议在 https://learn.microsoft.com/en-us/windows/win32 搜索相关功能，比如如果想创建ToolBar，直接搜索ToolBar：
+
+![image-20221014151201622](Win32窗口程序运行说明.assets/image-20221014151201622.png)
+
+这个[How to Create Toolbars - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/controls/create-toolbars)就是你需要的。可以将里面给的代码示例改为汇编形式，如：
+
+```c++
+HWND hWndToolbar = CreateWindowEx(0, TOOLBARCLASSNAME, NULL, 
+                                  WS_CHILD | TBSTYLE_WRAPABLE, 0, 0, 0, 0, 
+                                  hWndParent, NULL, g_hInst, NULL);
+```
+
+改成：
+
+```assembly
+invoke CreateWindowEx, 0, addr TOOLBARCLASSNAME, NULL, \
+                       WS_CHILD or TBSTYLE_WRAPABLE, 0, 0, 0, 0, \
+                       hWnd, NULL, hInstance, NULL
+mov hWinToolBar,eax
+```
+
+这里的TOOLBARCLASSNAME可以根据说明
+
+<img src="Win32窗口程序运行说明.assets/image-20221014151748641.png" alt="image-20221014151748641" style="zoom:67%;" />
+
+找到[Window Classes (CommCtrl.h) - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/controls/common-control-window-classes)，然后打开本机的相应文件（如：`C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\CommCtrl.h`），找到定义：
+
+![image-20221014151931142](Win32窗口程序运行说明.assets/image-20221014151931142.png)
+
+因此，需要在代码里面提前写：
+
+```assembly
+TOOLBARCLASSNAME BYTE "ToolbarWindow32",0
+```
+
