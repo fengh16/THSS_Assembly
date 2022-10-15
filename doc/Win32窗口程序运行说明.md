@@ -27,7 +27,7 @@
 3. 在Win32窗口程序实现某些功能时，一般**不需要使用中断**。
      - 例如：**不要**使用`int 10h`在Win32窗口程序中画图（一个例子是 https://blog.csdn.net/qq_40298054/article/details/84496944 ，请务必注意这里的程序是**运行在DOSBox中的**，不是Win32窗口程序！！）
 4. 如果子系统选择控制台，会导致运行时多出一个黑框，但不会有别的影响。
-4. 很多结构和函数的定义在`windows.inc`中都有，可以直接用。
+4. 很多结构和函数的定义在`windows.inc`中都有，可以直接用。**但是`windows.inc`及一些其他的masm32中自带的inc文件与`Irvine32.inc`和`GraphWin.inc`不兼容，大家可以参考下文中`WinApp_v2.asm`中include文件的方式。**
 
 
 
@@ -264,7 +264,10 @@ MSGStruct ENDS
 MAIN_WINDOW_STYLE = WS_VISIBLE+WS_DLGFRAME+WS_CAPTION+WS_BORDER+WS_SYSMENU \
 	+WS_MAXIMIZEBOX+WS_MINIMIZEBOX+WS_THICKFRAME
 
-;后续部分与WinApp.asm基本一致
+;==================== DATA =======================
+.data
+
+;后续部分与WinApp.asm一致
 ```
 
 
@@ -300,6 +303,22 @@ rc文件上右键——添加资源，选择对应的类型，选择导入（这
 使用时可以在`asm`文件中添加`IDI_ICON1 = 101`一行，并且在合适位置调用（如加载icon，作为程序的图标）：
 
 ![image-20201013223857609](Win32窗口程序运行说明.assets/image-20201013223857609.png)
+
+
+
+## 汇编中相关函数查找示例
+
+先确认Win32 API中的对应函数名，比如需要用到`TransparentBlt`，可以这样查找对应的`inc`和`lib`文件：
+
+在你的masm32安装路径中的`include`文件夹（如：`C:\masm32\include`）中搜索该内容，记得搜索中高级选项选中“文件内容”：
+
+![image-20221015133335189](Win32窗口程序运行说明.assets/image-20221015133335189.png)
+
+在搜出的`inc`文件中，确认有这个查找的函数：
+
+![image-20221015133503736](Win32窗口程序运行说明.assets/image-20221015133503736.png)
+
+因为这个文件名是`msimg32`，因此在代码中`include msimg32.inc`并`includelib msimg32.lib`即可。
 
 
 
