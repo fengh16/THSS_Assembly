@@ -16,7 +16,7 @@
 
 ![image-20201013201621073](Win32窗口程序运行说明.assets/image-20201013201621073.png)
 
-
+<div style="page-break-after:always"></div>
 
 ## 相关说明
 
@@ -29,7 +29,7 @@
 4. 如果子系统选择控制台，会导致运行时多出一个黑框，但不会有别的影响。
 4. 很多结构和函数的定义在`windows.inc`中都有，可以直接用。**但是`windows.inc`及一些其他的masm32中自带的inc文件与`Irvine32.inc`和`GraphWin.inc`不兼容，大家可以参考下文中`WinApp_v2.asm`中include文件的方式。**
 
-
+<div style="page-break-after:always"></div>
 
 ## 示例程序
 
@@ -270,7 +270,7 @@ MAIN_WINDOW_STYLE = WS_VISIBLE+WS_DLGFRAME+WS_CAPTION+WS_BORDER+WS_SYSMENU \
 ;后续部分与WinApp.asm一致
 ```
 
-
+<div style="page-break-after:always"></div>
 
 ## 资源文件加载
 
@@ -304,7 +304,7 @@ rc文件上右键——添加资源，选择对应的类型，选择导入（这
 
 ![image-20201013223857609](Win32窗口程序运行说明.assets/image-20201013223857609.png)
 
-
+<div style="page-break-after:always"></div>
 
 ## 汇编中相关函数查找示例
 
@@ -320,9 +320,9 @@ rc文件上右键——添加资源，选择对应的类型，选择导入（这
 
 因为这个文件名是`msimg32`，因此在代码中`include msimg32.inc`并`includelib msimg32.lib`即可。
 
+<div style="page-break-after:always"></div>
 
-
-## 相关功能查找示例
+## Win32API相关功能查找示例
 
 建议在 https://learn.microsoft.com/en-us/windows/win32 搜索相关功能，比如如果想创建ToolBar，直接搜索ToolBar：
 
