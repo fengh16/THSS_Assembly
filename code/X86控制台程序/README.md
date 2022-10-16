@@ -4,6 +4,7 @@
 2. InputOutput.asm: 利用scanf和printf，将输入的两个整数相加并输出。由于不使用`main PROC`的写法，所以无法在VS中直接设置断点（可以改成`start PROC`到`start ENDP`的写法）。
 3. InputOutput_crt.asm: 对InputOutput.asm进行修改，将scanf和printf换为`msvcrt.inc`中的crt_scanf和crt_printf，其余没有变化。
 4. MessageBox.asm: 利用MessageBox弹出一个提示框。
+4. 项目中使用多个asm文件的例子: 使用两个asm文件和一个inc文件的例子。
 
 注：
 
