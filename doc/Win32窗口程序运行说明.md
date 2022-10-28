@@ -16,14 +16,17 @@
 
 ## 相关说明
 
-1. 请首先阅读课本第七版第11章《MS-Windows编程》，特别是：
-     - 表11-1：MS-Windows和MASM的类型转换；
+1. 请首先阅读课本第七版第11章《MS-Windows编程》；
 2. 程序中会使用Win32 API（官方教程在：https://learn.microsoft.com/zh-cn/windows/win32/api/ ），可以参考该官方教程及第七版课本第11章《MS-Windows编程》的内容，在汇编中通过函数调用的方法调用这些API。
-   - 需要找某些功能时，请在搜索引擎中搜索【Win32API 功能名】。比如，要调用画图功能，请搜索【Win32API 画图】。
+   - 需要找某些功能时，请在搜索引擎中搜索【Win32+功能名】。比如，要调用画图功能，请搜索【Win32 绘图】。
+     - ´如果中文相关资料比较少，可以在bing或者Google中用英文进行搜索，可以限定搜索范围在StackOverflow中，例如搜索：【win32 how to create scrollbar site:stackoverflow.com】
+   - 找到相应功能的函数后，可以用汇编的INVOKE进行调用。
+     - 参数类型可以参考课本第七版第11章《MS-Windows编程》中表11-1：MS-Windows和MASM的类型转换；请注意所有指针格式在32位程序中都是32位；
+     - 请注意函数返回值在eax中，不要忘记把eax放到对应的变量里。
 3. 在Win32窗口程序实现某些功能时，一般**不需要使用中断**。
      - 例如：**不要**使用`int 10h`在Win32窗口程序中画图（一个例子是 https://blog.csdn.net/qq_40298054/article/details/84496944 ，请务必注意这里的程序是**运行在DOSBox中的**，不是Win32窗口程序！！）
 4. 如果子系统选择控制台，会导致运行时多出一个黑框，但不会有别的影响。
-4. 很多结构和函数的定义在`windows.inc`中都有，可以直接用。**但是`windows.inc`及一些其他的masm32中自带的inc文件与`Irvine32.inc`和`GraphWin.inc`不兼容，大家可以参考下文中`WinApp_v2.asm`中include文件的方式。**
+5. 很多结构和函数的定义在`windows.inc`中都有，可以直接用。**但是`windows.inc`及一些其他的masm32中自带的inc文件与`Irvine32.inc`和`GraphWin.inc`不兼容，大家可以参考下文中`WinApp_v2.asm`中include文件的方式。**
 
 <div style="page-break-after:always"></div>
 
