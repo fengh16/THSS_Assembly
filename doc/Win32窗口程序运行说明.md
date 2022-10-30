@@ -271,6 +271,54 @@ MAIN_WINDOW_STYLE = WS_VISIBLE+WS_DLGFRAME+WS_CAPTION+WS_BORDER+WS_SYSMENU \
 
 <div style="page-break-after:always"></div>
 
+## 数据类型
+
+请参考课本第七版第11章《MS-Windows编程》中表11-1：MS-Windows和MASM的类型转换
+
+![image-20221030221336876](Win32窗口程序运行说明.assets/image-20221030221336876.png)
+
+### 函数指针
+
+一些时候需要用到函数指针，这里有一个示例：
+
+```assembly
+.386
+.model flat, stdcall
+
+
+include msvcrt.inc
+includelib msvcrt.lib
+
+FUNCPROTO       TYPEDEF PROTO 
+FUNCPTR         TYPEDEF PTR FUNCPROTO
+
+.data
+  info db 'abc', 0
+  pFunction   FUNCPTR     ?
+
+.code
+a PROC
+  invoke crt_printf, addr info
+  ret
+a ENDP
+
+main PROC
+ mov pFunction, offset a
+ invoke FUNCPTR ptr pFunction
+ ret
+main ENDP
+end main
+```
+
+请注意，`FUNCPTR ptr pFunction`的含义是：
+
+- 目前我们已经有了一个函数指针`pFunction`，利用`FUNCPTR ptr pFunction`得到这个函数指针对应的函数；
+- 所以`FUNCPTR ptr pFunction`是【函数】而非【函数指针】。
+- 如果有一些函数需要用函数指针作为参数，直接传入`pFunction`而不要传入`FUNCPTR ptr pFunction`。
+  - 这里因为是要用`INVOKE`调用函数，所以用的是`FUNCPTR ptr pFunction`。
+
+<div style="page-break-after:always"></div>
+
 ## 资源文件加载
 
 **资源文件**上面右键，新建项，选择**资源——资源文件(.rc)**
